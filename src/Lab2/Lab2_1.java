@@ -11,7 +11,6 @@ public class Lab2_1 {
         double result = Result(input);
         System.out.println(result);
         while (true){
-
             String nextInput = scan.nextLine();
             System.out.println(NextResult(nextInput, result));
             result = NextResult(nextInput, result);
@@ -22,18 +21,25 @@ public class Lab2_1 {
         String input = inputText.replaceAll("\\s+", "");
         String operator = input.replaceAll("[0-9]","");
         double secondNum = Double.parseDouble(input.replaceAll("[^0-9]", ""));
-
         return Calculation(operator, firstNum, secondNum );
     }
 
     private static double Result(String inputText) throws Exception {
         String input = inputText.replaceAll("\\s+", "");
+        boolean IsNegative = false;
+        if(inputText.startsWith("-")){
+            input = input.substring(1);
+            IsNegative = true;
+        }
         String operator = input.replaceAll("[0-9]","");
         String[] elements = input.split("\\p{Punct}");
 
         double firstNum = Double.parseDouble(elements[0]);
         double secondNum = Double.parseDouble(elements[1]);
 
+        if(IsNegative){
+            return Calculation(operator, firstNum * -1, secondNum);
+        }
         return Calculation(operator, firstNum, secondNum);
     }
 
