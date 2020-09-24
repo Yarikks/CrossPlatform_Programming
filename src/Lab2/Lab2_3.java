@@ -14,12 +14,11 @@ public class Lab2_3 {
         int N = scan.nextInt();
         System.out.println("Write M of array(NxM):");
         int M = scan.nextInt();
+
         int[][] array = new int[N][M];
         for(int i=0;i<N;i++){
             for(int j =0;j<M;j++){
-                System.out.println("Write (" + i + "," + j + ") element.");
-                System.out.println("0 - is black pixel, 1 - is white pixel");
-                array[i][j] = scan.nextInt();
+                array[i][j] = (int)Math.round(Math.random());
             }
         }
         return array;
@@ -28,9 +27,31 @@ public class Lab2_3 {
     private static void OutputBlackPixels(int[][] pixelArray){
         for (int i=0;i<pixelArray.length;i++){
             for(int j=0;j<pixelArray[0].length; j++){
-                if(pixelArray[i][j] == 0){
-                    System.out.print("("+i+","+j+"), ");
+                    System.out.print(pixelArray[i][j]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        for (int i=0;i<pixelArray.length;i++){
+            for(int j=0;j<pixelArray[i].length; j++){
+                if((i + 1 < pixelArray.length && j + 1 < pixelArray[i].length) & (i > 0 & j> 0)){
+                    if(((pixelArray[i+1][j] == 0 | pixelArray[i][j+1] == 0) | (pixelArray[i-1][j] == 0 | pixelArray[i][j-1] == 0)) & pixelArray[i][j] == 0){
+                        System.out.print("("+i+","+j+") ");
+                    }
+                    else{
+                        System.out.print(" -   ");
+                    }
                 }
+                else{
+                    if(pixelArray[i][j] == 0 | pixelArray[i][j] == 0 & pixelArray[i][j]==0){
+                        System.out.print("("+i+","+j+") ");
+                    }
+                    else{
+                        System.out.print(" -   ");
+                    }
+                }
+
             }
             System.out.println();
         }
